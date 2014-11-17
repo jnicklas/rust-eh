@@ -500,5 +500,10 @@ macro_rules! try {
     ($expr:expr) => (match $expr {
         Err(x) => fail!(x),
         Ok(x) => x,
-    })
+    });
+
+    ($expr:expr, $($err:expr),*) => (match $expr {
+        Err(x) => fail!($($err),*, x),
+        Ok(x) => x,
+    });
 }

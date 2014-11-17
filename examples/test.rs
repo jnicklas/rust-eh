@@ -48,10 +48,7 @@ fn bar() -> EhResult<()> {
 }
 
 fn baz() -> EhResult<()> {
-    match bar() {
-        Err(err) => fail!(RecordNotFound, "could not find record", err),
-        Ok(x) => Ok(x),
-    }
+    Ok(try!(bar(), RecordNotFound, "could not find record"))
 }
 
 fn main() {
